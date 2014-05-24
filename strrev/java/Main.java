@@ -11,12 +11,20 @@ public class Main {
     public static void strrev(char[] string) {
         int front = 0;
         int back = string.length - 1;
-        char aux;
+        //char aux;
         
         while (front < back) {
-            aux = string[front];
-            string[front] = string[back];
-            string[back] = aux;
+            /* 
+             * Swapping with an aux variable
+             * aux = string[front];
+             * string[front] = string[back];
+             * string[back] = aux;
+            */
+
+            // xor swapping
+            string[front] ^= string[back];
+            string[back] ^= string[front];
+            string[front] ^= string[back];
             front++;
             back--;
         }
