@@ -16,7 +16,7 @@ public class Main {
 
     /* 
      * Only handles ascii, does not take into consideration case sensitiviness
-     * or whitespace. Basically the same solution listed in the book.
+     * or whitespace. Very C-like. Basically the same solution listed in the book.
      */
     public static boolean uniqueCharacters(String s) {
         boolean[] seen = new boolean[256];
