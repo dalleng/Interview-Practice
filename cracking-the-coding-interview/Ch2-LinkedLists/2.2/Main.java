@@ -1,3 +1,7 @@
+/* 
+ * 2.2 Implement an algorithm to find the nth to last element of a singly linked list.
+ */
+
 public class Main {
 	public static void main(String[] args) {
 		LinkedList l = new LinkedList();
