@@ -1,5 +1,14 @@
 import unittest
 
+"""
+   Problem 4.1
+   -----------------------------------------------------
+   Implement a function to check if a tree is balanced.
+   For the purposes of this question, a balanced tree is
+   defined to be a tree such that no two leaf nodes differ
+   in distance from the root by more than one.
+"""
+
 
 class TreeNode:
     def __init__(self, x):
@@ -105,6 +114,25 @@ class TestIsBalanced(unittest.TestCase):
         node2 = TreeNode(2)
         root = TreeNode.build_tree(1, None, node2)
         self.assertTrue(is_balanced(root))
+
+    def test_unbalanced(self):
+        """
+        Unbalanced test
+            1
+           / \
+          4   2
+                \
+                 3
+                  \
+                   5
+        """
+        node5 = TreeNode(3)
+        node4 = TreeNode(4)
+        node3 = TreeNode.build_tree(3, None, node5)
+        node2 = TreeNode.build_tree(2, None, node3)
+        root = TreeNode.build_tree(1, node4, node2)
+        self.assertFalse(is_balanced(root))
+
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestIsBalanced)
