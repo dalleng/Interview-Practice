@@ -18,6 +18,7 @@ class TreeNode:
 def check_leaves_levels(root):
     """
     Check if all leaves are at the same level
+    http://www.geeksforgeeks.org/check-leaves-level/
     """
     levels = []
 
@@ -38,6 +39,24 @@ def check_leaves_levels(root):
 class CheckLeavesLevels(unittest.TestCase):
     def test_single_node(self):
         root = TreeNode('foo')
+        self.assertTrue(check_leaves_levels(root))
+
+    def test_same_level(self):
+        """
+                  12
+                /
+              5
+            /   \
+           3     9
+          /      /
+         1      2
+        """
+        node1 = TreeNode(1)
+        node2 = TreeNode(2)
+        node3 = TreeNode.node_with_children(3, node1, None)
+        node9 = TreeNode.node_with_children(9, node2, None)
+        node5 = TreeNode.node_with_children(5, node3, node9)
+        root = TreeNode.node_with_children(12, node5, None)
         self.assertTrue(check_leaves_levels(root))
 
     def test_different_levels(self):
