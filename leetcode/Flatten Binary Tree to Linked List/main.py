@@ -32,6 +32,51 @@ class Solution:
                 self.flatten(root.right)
 
 
+# 03/Jul/2021 alternative solution just returning a list of
+# nodes in preorder and then iterating through it and setting
+# the connections properly
+class Solution2:
+    def flatten(self, root: TreeNode) -> None:
+        preorder = []
+
+        def traversal(root):
+            if not root:
+                return
+            preorder.append(root)
+            traversal(root.left)
+            traversal(root.right)
+
+        traversal(root)
+
+        for i in range(len(preorder)-1):
+            preorder[i].right = preorder[i+1]
+            preorder[i].left = None
+
+
+# 03/Jul/2021 alternative solution using recursion and modifying
+# the tree in place
+class Solution3:
+    def flatten(self, root: TreeNode) -> None:
+        return self._flatten(root)
+
+    def _flatten(self, root):
+        if not root:
+            return None
+
+        if not root.left and not root.right:
+            return root
+
+        left_tail = self._flatten(root.left)
+        right_tail = self._flatten(root.right)
+
+        if left_tail:
+            left_tail.right = root.right
+            root.right = root.left
+            root.left = None
+
+        return right_tail if right_tail else left_tail
+
+
 def flattened_str(root):
     if not root:
         return ''
