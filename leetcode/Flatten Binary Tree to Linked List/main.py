@@ -77,6 +77,26 @@ class Solution3:
         return right_tail if right_tail else left_tail
 
 
+# 03/Jul/2021 alternative solution using an iterative loop and modifying in place
+class Solution4:
+
+    def flatten(self, root) -> None:
+        current = root
+
+        if not current:
+            return
+
+        while current:
+            if current.left:
+                rightmost = current.left
+                while rightmost.right:
+                    rightmost = rightmost.right
+                rightmost.right = current.right
+                current.right = current.left
+                current.left = None
+            current = current.right
+
+
 def flattened_str(root):
     if not root:
         return ''
