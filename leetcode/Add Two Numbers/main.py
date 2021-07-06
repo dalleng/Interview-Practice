@@ -57,6 +57,34 @@ class Solution:
         return head
 
 
+# Solution added on 06/July/2021
+class Solution2:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        c1 = l1
+        c2 = l2
+        result = None
+        carry = False
+        previous = None
+
+        while c1 or c2 or carry:
+            s = (c1.val if c1 else 0) + (c2.val if c2 else 0) + (1 if carry else 0)
+
+            carry = s >= 10
+            new = ListNode(val=int(str(s)[-1]))
+
+            if previous:
+                previous.next = new
+
+            if not result:
+                result = new
+
+            previous = new
+            c1 = c1.next if c1 else c1
+            c2 = c2.next if c2 else c2
+
+        return result
+
+
 def buildLinkedList(iterable):
     root = ListNode(iterable[0])
     tail = root
@@ -71,32 +99,28 @@ class addTwoNumbersTest(unittest.TestCase):
     def test_example(self):
         l1 = buildLinkedList([2, 4, 3])
         l2 = buildLinkedList([5, 6, 4])
-        self.assertEquals(Solution().addTwoNumbers(l1, l2),
-                          buildLinkedList([7, 0, 8]))
+        self.assertEquals(Solution().addTwoNumbers(l1, l2), buildLinkedList([7, 0, 8]))
 
     def test_l2_less_digits(self):
         l1 = buildLinkedList([2, 4, 3])
         l2 = buildLinkedList([6, 4])
-        self.assertEquals(Solution().addTwoNumbers(l1, l2),
-                          buildLinkedList([8, 8, 3]))
+        self.assertEquals(Solution().addTwoNumbers(l1, l2), buildLinkedList([8, 8, 3]))
 
     def test_l1_less_digits(self):
         l1 = buildLinkedList([2, 4, 3])
         l2 = buildLinkedList([9, 9])
-        self.assertEquals(Solution().addTwoNumbers(l1, l2),
-                          buildLinkedList([1, 4, 4]))
+        self.assertEquals(Solution().addTwoNumbers(l1, l2), buildLinkedList([1, 4, 4]))
 
     def test_l1_none(self):
         l1 = None
         l2 = buildLinkedList([9, 9])
-        self.assertEquals(Solution().addTwoNumbers(l1, l2),
-                          buildLinkedList([9, 9]))
+        self.assertEquals(Solution().addTwoNumbers(l1, l2), buildLinkedList([9, 9]))
 
     def test_one_more_carry(self):
         l1 = ListNode(5)
         l2 = ListNode(5)
-        self.assertEquals(Solution().addTwoNumbers(l1, l2),
-                          buildLinkedList([0, 1]))
+        self.assertEquals(Solution().addTwoNumbers(l1, l2), buildLinkedList([0, 1]))
+
 
 if __name__ == '__main__':
     unittest.main()
