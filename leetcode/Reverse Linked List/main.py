@@ -1,3 +1,9 @@
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
 class Solution:
     # @param {ListNode} head
     # @return {ListNode}
@@ -25,3 +31,16 @@ class Solution:
 
         current.next = None
         return reversed
+
+
+# Added 07/Jul/2021. Simpler iterative solution.
+class Solution2:
+    def reverseList(self, head: ListNode) -> ListNode:
+        previous = None
+        current = head
+        while current:
+            next = current.next
+            current.next = previous
+            previous = current
+            current = next
+        return previous
