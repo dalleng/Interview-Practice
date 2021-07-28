@@ -2,6 +2,7 @@ import time
 import unittest
 import heapq
 from longlist import longlist
+from typing import List
 
 
 # Definition for singly-linked list.
@@ -62,6 +63,33 @@ class Solution:
         tail.next = None
         return newList.next
     """
+
+    # Same approach, slightly simplified. Added on 28/July/2021
+    def mergeKLists2(self, lists: List[ListNode]) -> ListNode:
+        merged = []
+
+        for ll in lists:
+            current = ll
+            while current:
+                heapq.heappush(merged, current.val)
+                current = current.next
+
+        head = None
+        previous = None
+
+        while merged:
+            val = heapq.heappop(merged)
+            node = ListNode(val=val)
+
+            if head is None:
+                head = node
+            else:
+                previous.next = node
+                previous = node
+
+            previous = node
+
+        return head
 
     def mergeKLists(self, lists):
         heap = []
@@ -134,6 +162,7 @@ class TestMerge(unittest.TestCase):
         lists = [buildLinkedList(l) for l in longlist]
         root = self.s.mergeKLists(lists)
         self.assertEquals(root, buildLinkedList(sorted(flattened)))
+
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestMerge)
