@@ -28,10 +28,6 @@ class Solution:
                 lo += 1
                 continue
 
-            if hi != len(nums) - 1 and nums[hi] == nums[hi + 1]:
-                hi -= 1
-                continue
-
             quad_sum = nums[i] + nums[j] + nums[lo] + nums[hi]
 
             if quad_sum == target:
