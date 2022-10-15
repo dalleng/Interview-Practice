@@ -24,6 +24,9 @@ class Solution:
         nums.sort()
         res = []
         for i, n in enumerate(nums):
+            # if the list is sorted and n > 0, only larger numbers will be
+            # found ahead so there's no chance to find a pair of numbers that'd
+            # sum to -n
             if n > 0:
                 break
 
