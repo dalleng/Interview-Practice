@@ -52,8 +52,31 @@ class Solution:
         return closest
 
 
-class ThreeSumClosest(unittest.TestCase):
+class Solution2:
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        nums.sort()
+        result = None
+        for i, num in enumerate(nums):
+            lo = i + 1
+            hi = len(nums) - 1
 
+            while lo < hi:
+                sum3 = num + nums[lo] + nums[hi]
+
+                if result is None or abs(target - sum3) < abs(target - result):
+                    result = sum3
+
+                if sum3 > target:
+                    hi -= 1
+                elif sum3 < target:
+                    lo += 1
+                else:
+                    return target
+
+        return result
+
+
+class ThreeSumClosest(unittest.TestCase):
     def test_basic(self):
         got = Solution().threeSumClosest([-1, 2, 1, -4], 1)
         self.assertEqual(got, 2)
@@ -72,6 +95,28 @@ class ThreeSumClosest(unittest.TestCase):
 
     def test_large_negative_numbers(self):
         got = Solution().threeSumClosest([-100, -98, -2, -1], -101)
+        self.assertEqual(got, -101)
+
+
+class ThreeSumClosestSolution2(unittest.TestCase):
+    def test_basic(self):
+        got = Solution2().threeSumClosest([-1, 2, 1, -4], 1)
+        self.assertEqual(got, 2)
+
+    def test_basic2(self):
+        got = Solution2().threeSumClosest([0, 2, 1, -3], 1)
+        self.assertEqual(got, 0)
+
+    def test_exact_solution_at_the_start(self):
+        got = Solution2().threeSumClosest([1, 2, 3], 6)
+        self.assertEqual(got, 6)
+
+    def test_exact_solution_at_the_end(self):
+        got = Solution2().threeSumClosest([0, 0, 0, 0, 1, 2, 3], 6)
+        self.assertEqual(got, 6)
+
+    def test_large_negative_numbers(self):
+        got = Solution2().threeSumClosest([-100, -98, -2, -1], -101)
         self.assertEqual(got, -101)
 
 
