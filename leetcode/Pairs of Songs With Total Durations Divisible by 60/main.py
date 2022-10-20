@@ -1,6 +1,6 @@
 from typing import List
 import math
-from collections import Counter
+from collections import Counter, defaultdict
 
 
 class Solution:
@@ -72,7 +72,7 @@ class Solution:
 
         return solutions
 
-        def numPairsDivisibleBy60(self, time: List[int]) -> int:
+        def numPairsDivisibleBy60Alternative2(self, time: List[int]) -> int:
             memo = {}
             solutions = 0
 
@@ -112,3 +112,35 @@ class Solution:
                     memo[complement] = 0
 
             return solutions
+
+    def numPairsDivisibleBy60(self, time: List[int]) -> int:
+        """
+        This is a simplified version of the previous solution
+        """
+
+        # defaultdict is going to return 0 for values not in the dict
+        remainders = defaultdict(int)
+        solutions = 0
+
+        for t in time:
+            """
+            We need to treat the case of multiples of 60 differently as
+            60 - t % 60 would return 60. For example:
+
+            t = 120, 60 - 120 % 60, 60 - 0 = 60
+
+            60 would not make sense as all other remainders are going to be
+            between 0-59
+            """
+            if t % 60 == 0:
+                solutions += remainders[0]
+            else:
+                """
+                This handles the case of (a%60 + b%60) % 60 = 0.
+                Need to find the complement of t % 60
+                """
+                solutions += remainders[60 - t % 60]
+
+            remainders[t % 60] += 1
+
+        return solutions
