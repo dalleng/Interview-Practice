@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 from collections import deque
 
 
@@ -32,5 +32,29 @@ class Solution:
                 result.append([current.val])
 
             print(f"result list updated: {result}")
+
+        return result
+
+    def levelOrder2(self, root: Optional[TreeNode]) -> List[List[int]]:
+        """
+        Slightly simplified version
+        """
+        result = []
+        if root is None:
+            return result
+
+        frontier = deque([(root, 0)])
+        while frontier:
+            current, level = frontier.popleft()
+            try:
+                result[level].append(current.val)
+            except IndexError:
+                result.append([current.val])
+
+            if current.left:
+                frontier.append((current.left, level + 1))
+
+            if current.right:
+                frontier.append((current.right, level + 1))
 
         return result
