@@ -2,14 +2,15 @@ import time
 import unittest
 import heapq
 from longlist import longlist
-from typing import List
+from typing import List, Optional
+import functools
 
 
 # Definition for singly-linked list.
 class ListNode:
-    def __init__(self, x):
-        self.val = x
-        self.next = None
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
     def __str__(self):
         s = '{}'.format(self.val)
@@ -18,9 +19,6 @@ class ListNode:
             s += ' -> {}'.format(n.val)
             n = n.next
         return s
-
-    def __eq__(self, other):
-        return str(self) == str(other)
 
 
 def buildLinkedList(iterable):
@@ -34,85 +32,25 @@ def buildLinkedList(iterable):
 
 
 class Solution:
-    # @param {ListNode[]} lists
-    # @return {ListNode}
-    """
-    Slow solution
-    def mergeKLists(self, lists):
-        newList = ListNode(None)
-        tail = newList
-        minIndex = None
-        emptyLists = 0
-        linkedLists = len(lists)
-
-        while emptyLists != linkedLists:
-            emptyLists = 0
-
-            for i, head in enumerate(lists):
-                if head is None:
-                    emptyLists += 1
-                elif minIndex is None or head.val < lists[minIndex].val:
-                    minIndex = i
-
-            if minIndex is not None:
-                tail.next = lists[minIndex]
-                tail = tail.next
-                lists[minIndex] = lists[minIndex].next
-                minIndex = None
-
-        tail.next = None
-        return newList.next
-    """
-
-    # Same approach, slightly simplified. Added on 28/July/2021
-    def mergeKLists2(self, lists: List[ListNode]) -> ListNode:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         merged = []
+        result_root = None
 
-        for ll in lists:
-            current = ll
+        for root in lists:
+            current = root
             while current:
                 heapq.heappush(merged, current.val)
                 current = current.next
 
-        head = None
-        previous = None
+        if merged:
+            result_root = ListNode(val=heapq.heappop(merged))
 
+        current = result_root
         while merged:
-            val = heapq.heappop(merged)
-            node = ListNode(val=val)
+            current.next = ListNode(val=heapq.heappop(merged))
+            current = current.next
 
-            if head is None:
-                head = node
-            else:
-                previous.next = node
-                previous = node
-
-            previous = node
-
-        return head
-
-    def mergeKLists(self, lists):
-        heap = []
-
-        for head in lists:
-            while head is not None:
-                heapq.heappush(heap, (head.val, head))
-                head = head.next
-
-        sorted_list = None
-        tail = None
-
-        while heap:
-            _, node = heapq.heappop(heap)
-            if sorted_list is None:
-                sorted_list = node
-                tail = node
-            else:
-                tail.next = node
-                tail = node
-                tail.next = None
-
-        return sorted_list
+        return result_root
 
 
 class TestMerge(unittest.TestCase):
@@ -123,7 +61,7 @@ class TestMerge(unittest.TestCase):
 
     def tearDown(self):
         t = time.time() - self.startTime
-        print "%f seconds" % (t,)
+        print("%f seconds" % (t,))
 
     def test_merge_two(self):
         # 2 -> 4 -> 6 -> 8
@@ -134,13 +72,13 @@ class TestMerge(unittest.TestCase):
 
         lists = [l1, l2]
         root = self.s.mergeKLists(lists)
-        self.assertEquals(root, buildLinkedList(range(1, 10)))
+        self.assertEqual(str(root), str(buildLinkedList(range(1, 10))))
 
     def test_single_element(self):
         l = buildLinkedList((1,))
         lists = [l]
         root = self.s.mergeKLists(lists)
-        self.assertEquals(str(root), '1')
+        self.assertEqual(str(root), '1')
 
     def test_merge_four(self):
         l1 = [1, 15, 200]
@@ -154,16 +92,15 @@ class TestMerge(unittest.TestCase):
             buildLinkedList(l4),
         ]
         root = self.s.mergeKLists(lists)
-        self.assertEquals(root, buildLinkedList(sorted(l1 + l2 + l3 + l4)))
+        self.assertEquals(str(root), str(buildLinkedList(sorted(l1 + l2 + l3 + l4))))
 
     def test_very_large_list(self):
-        flatten = lambda l: reduce(lambda x, y: x + y, l, [])
+        flatten = lambda l: functools.reduce(lambda x, y: x + y, l, [])  # noqa
         flattened = flatten(longlist)
-        lists = [buildLinkedList(l) for l in longlist]
+        lists = [buildLinkedList(ll) for ll in longlist]
         root = self.s.mergeKLists(lists)
-        self.assertEquals(root, buildLinkedList(sorted(flattened)))
+        self.assertEquals(str(root), str(buildLinkedList(sorted(flattened))))
 
 
 if __name__ == '__main__':
-    suite = unittest.TestLoader().loadTestsFromTestCase(TestMerge)
-    unittest.TextTestRunner(verbosity=2).run(suite)
+    unittest.main()
