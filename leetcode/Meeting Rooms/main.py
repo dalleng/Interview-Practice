@@ -21,5 +21,5 @@ class SolutionTestCase(unittest.TestCase):
         self.assertEqual(Solution().canAttendMeetings([[13, 15], [1, 13]]), True)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -56,14 +56,12 @@ class TraversalsTest(unittest.TestCase):
         Image:
         http://flylib.com/books/2/264/1/html/2/images/fig21-11.jpg
         """
-        node_e = TreeNode.node_with_children('E', TreeNode('H'), TreeNode('I'))
-        node_c = TreeNode.node_with_children('C', TreeNode('F'), TreeNode('G'))
-        node_b = TreeNode.node_with_children('B', TreeNode('D'), node_e)
-        node_a = TreeNode.node_with_children('A', node_b, node_c)
-        self.assertEquals([node.val for node in node_a.inorder()],
-                          list('DBHEIAFCG'))
-        self.assertEquals([node.val for node in node_a.postorder()],
-                          list('DHIEBFGCA'))
+        node_e = TreeNode.node_with_children("E", TreeNode("H"), TreeNode("I"))
+        node_c = TreeNode.node_with_children("C", TreeNode("F"), TreeNode("G"))
+        node_b = TreeNode.node_with_children("B", TreeNode("D"), node_e)
+        node_a = TreeNode.node_with_children("A", node_b, node_c)
+        self.assertEquals([node.val for node in node_a.inorder()], list("DBHEIAFCG"))
+        self.assertEquals([node.val for node in node_a.postorder()], list("DHIEBFGCA"))
 
     def test_single_child(self):
         """
@@ -72,16 +70,16 @@ class TraversalsTest(unittest.TestCase):
         Image:
         http://3.bp.blogspot.com/-BVjfxybgcBs/Uf1xKT9bZsI/AAAAAAAAAYA/9aDf1P4819U/s1600/btreeTrav2.gif
         """
-        node_h = TreeNode.node_with_children('H', TreeNode('G'), None)
-        node_f = TreeNode.node_with_children('F', TreeNode('B'), node_h)
-        node_t = TreeNode.node_with_children('T', None, TreeNode('W'))
-        node_y = TreeNode.node_with_children('Y', node_t, TreeNode('Z'))
-        node_s = TreeNode.node_with_children('S', TreeNode('R'), node_y)
-        node_p = TreeNode.node_with_children('P', node_f, node_s)
-        self.assertEquals([node.val for node in node_p.inorder()],
-                          list('BFGHPRSTWYZ'))
-        self.assertEquals([node.val for node in node_p.postorder()],
-                          list('BGHFRWTZYSP'))
+        node_h = TreeNode.node_with_children("H", TreeNode("G"), None)
+        node_f = TreeNode.node_with_children("F", TreeNode("B"), node_h)
+        node_t = TreeNode.node_with_children("T", None, TreeNode("W"))
+        node_y = TreeNode.node_with_children("Y", node_t, TreeNode("Z"))
+        node_s = TreeNode.node_with_children("S", TreeNode("R"), node_y)
+        node_p = TreeNode.node_with_children("P", node_f, node_s)
+        self.assertEquals([node.val for node in node_p.inorder()], list("BFGHPRSTWYZ"))
+        self.assertEquals(
+            [node.val for node in node_p.postorder()], list("BGHFRWTZYSP")
+        )
 
     def test_unbalanced(self):
         """
@@ -112,7 +110,7 @@ class Solution:
             i = inorder.index(root)
 
             inorderLeft = inorder[:i]
-            inorderRight = inorder[i + 1:]
+            inorderRight = inorder[i + 1 :]
 
             root = TreeNode(root)
             root.right = self.buildTree(inorderRight, postorder)
@@ -123,19 +121,15 @@ class Solution:
 
 class BuildTreeTest(unittest.TestCase):
     def test_full_tree(self):
-        root = Solution().buildTree(list('DBHEIAFCG'), list('DHIEBFGCA'))
-        self.assertEquals([node.val for node in root.inorder()],
-                          list('DBHEIAFCG'))
-        self.assertEquals([node.val for node in root.inorder()],
-                          list('DBHEIAFCG'))
+        root = Solution().buildTree(list("DBHEIAFCG"), list("DHIEBFGCA"))
+        self.assertEquals([node.val for node in root.inorder()], list("DBHEIAFCG"))
+        self.assertEquals([node.val for node in root.inorder()], list("DBHEIAFCG"))
 
     def test_single_child(self):
-        root = Solution().buildTree(list('BFGHPRSTWYZ'), list('BGHFRWTZYSP'))
-        self.assertEquals([node.val for node in root.inorder()],
-                          list('BFGHPRSTWYZ'))
-        self.assertEquals([node.val for node in root.postorder()],
-                          list('BGHFRWTZYSP'))
+        root = Solution().buildTree(list("BFGHPRSTWYZ"), list("BGHFRWTZYSP"))
+        self.assertEquals([node.val for node in root.inorder()], list("BFGHPRSTWYZ"))
+        self.assertEquals([node.val for node in root.postorder()], list("BGHFRWTZYSP"))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

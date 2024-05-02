@@ -16,16 +16,17 @@ def is_bst(root, min=None, max=None):
     if not root:
         return True
     else:
-        return all([
-            is_bst(root.left, min, root.data),
-            is_bst(root.right, root.data, max),
-            root.data > min if min else True,
-            root.data < max if max else True
-        ])
+        return all(
+            [
+                is_bst(root.left, min, root.data),
+                is_bst(root.right, root.data, max),
+                root.data > min if min else True,
+                root.data < max if max else True,
+            ]
+        )
 
 
 class IsBSTTest(unittest.TestCase):
-
     def test_empty_tree(self):
         self.assertTrue(check_binary_search_tree_(None))
 
@@ -45,9 +46,9 @@ class IsBSTTest(unittest.TestCase):
 
     def test_smaller_left_grandchild(self):
         """
-            2
-              3
-            1   5
+        2
+          3
+        1   5
         """
         root = Node(2)
         root.right = Node(3)
@@ -56,10 +57,10 @@ class IsBSTTest(unittest.TestCase):
 
     def test_smaller_left_grand_grandchild(self):
         """
-            12
-              15
-            11
-           9
+         12
+           15
+         11
+        9
         """
         root = Node(10)
         root.right = Node(15)
@@ -68,5 +69,5 @@ class IsBSTTest(unittest.TestCase):
         self.assertFalse(check_binary_search_tree_(root))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

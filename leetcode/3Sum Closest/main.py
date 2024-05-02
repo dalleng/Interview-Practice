@@ -120,6 +120,6 @@ class ThreeSumClosestSolution2(unittest.TestCase):
         self.assertEqual(got, -101)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print()
     unittest.main()

@@ -17,5 +17,5 @@ def main():
         print(ctr[q])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

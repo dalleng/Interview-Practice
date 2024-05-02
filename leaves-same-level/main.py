@@ -38,7 +38,7 @@ def check_leaves_levels(root):
 
 class CheckLeavesLevels(unittest.TestCase):
     def test_single_node(self):
-        root = TreeNode('foo')
+        root = TreeNode("foo")
         self.assertTrue(check_leaves_levels(root))
 
     def test_same_level(self):
@@ -73,5 +73,5 @@ class CheckLeavesLevels(unittest.TestCase):
         self.assertFalse(check_leaves_levels(root))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

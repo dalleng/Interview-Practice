@@ -7,10 +7,10 @@ class ListNode:
         self.next = None
 
     def __str__(self):
-        s = '{}'.format(self.val)
+        s = "{}".format(self.val)
         n = self.next
         while n:
-            s += ' -> {}'.format(n.val)
+            s += " -> {}".format(n.val)
             n = n.next
         return s
 
@@ -122,5 +122,5 @@ class addTwoNumbersTest(unittest.TestCase):
         self.assertEquals(Solution().addTwoNumbers(l1, l2), buildLinkedList([0, 1]))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

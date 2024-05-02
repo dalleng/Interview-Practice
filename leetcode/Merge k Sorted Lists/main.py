@@ -13,10 +13,10 @@ class ListNode:
         self.next = next
 
     def __str__(self):
-        s = '{}'.format(self.val)
+        s = "{}".format(self.val)
         n = self.next
         while n:
-            s += ' -> {}'.format(n.val)
+            s += " -> {}".format(n.val)
             n = n.next
         return s
 
@@ -78,7 +78,7 @@ class TestMerge(unittest.TestCase):
         l = buildLinkedList((1,))
         lists = [l]
         root = self.s.mergeKLists(lists)
-        self.assertEqual(str(root), '1')
+        self.assertEqual(str(root), "1")
 
     def test_merge_four(self):
         l1 = [1, 15, 200]
@@ -102,5 +102,5 @@ class TestMerge(unittest.TestCase):
         self.assertEquals(str(root), str(buildLinkedList(sorted(flattened))))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

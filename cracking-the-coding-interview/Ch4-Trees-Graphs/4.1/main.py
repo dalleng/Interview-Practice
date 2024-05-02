@@ -50,7 +50,6 @@ def is_balanced(root):
 
 
 class TestIsBalanced(unittest.TestCase):
-
     def test_null_tree(self):
         self.assertTrue(is_balanced(None))
 
@@ -134,6 +133,6 @@ class TestIsBalanced(unittest.TestCase):
         self.assertFalse(is_balanced(root))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(TestIsBalanced)
     unittest.TextTestRunner(verbosity=2).run(suite)

@@ -48,8 +48,8 @@ class Solution2:
 
         traversal(root)
 
-        for i in range(len(preorder)-1):
-            preorder[i].right = preorder[i+1]
+        for i in range(len(preorder) - 1):
+            preorder[i].right = preorder[i + 1]
             preorder[i].left = None
 
 
@@ -79,7 +79,6 @@ class Solution3:
 
 # 03/Jul/2021 alternative solution using an iterative loop and modifying in place
 class Solution4:
-
     def flatten(self, root) -> None:
         current = root
 
@@ -99,13 +98,13 @@ class Solution4:
 
 def flattened_str(root):
     if not root:
-        return ''
+        return ""
 
-    s = '{}'.format(root.val)
+    s = "{}".format(root.val)
     node = root
     while node:
         if node.right:
-            s += ' -> {}'.format(node.right.val)
+            s += " -> {}".format(node.right.val)
         node = node.right
     return s
 
@@ -118,7 +117,7 @@ class FlattenedTest(unittest.TestCase):
         root = None
         self.solution.flatten(root)
         solution_str = flattened_str(root)
-        self.assertEquals(solution_str, '')
+        self.assertEquals(solution_str, "")
 
     def test_problem_example(self):
         root = TreeNode(1)
@@ -136,7 +135,7 @@ class FlattenedTest(unittest.TestCase):
         self.solution.flatten(root)
         solution_str = flattened_str(root)
 
-        self.assertEquals(solution_str, '1 -> 2 -> 3 -> 4 -> 5 -> 6')
+        self.assertEquals(solution_str, "1 -> 2 -> 3 -> 4 -> 5 -> 6")
 
     def test_large(self):
         """
@@ -170,18 +169,17 @@ class FlattenedTest(unittest.TestCase):
         self.solution.flatten(root)
         solution_str = flattened_str(root)
 
-        self.assertEquals(solution_str,
-                          '1 -> 2 -> 3 -> 4 -> 7 -> 8 -> 5 -> 9 -> 6')
+        self.assertEquals(solution_str, "1 -> 2 -> 3 -> 4 -> 7 -> 8 -> 5 -> 9 -> 6")
 
     def test_left_balanced(self):
         """
-                1
-               /
-              2
+              1
              /
-            3
+            2
            /
-          4
+          3
+         /
+        4
         """
         root = TreeNode(1)
         node2 = TreeNode(2)
@@ -194,9 +192,9 @@ class FlattenedTest(unittest.TestCase):
         self.solution.flatten(root)
         solution_str = flattened_str(root)
 
-        self.assertEquals(solution_str, '1 -> 2 -> 3 -> 4')
+        self.assertEquals(solution_str, "1 -> 2 -> 3 -> 4")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(FlattenedTest)
     unittest.TextTestRunner(verbosity=2).run(suite)

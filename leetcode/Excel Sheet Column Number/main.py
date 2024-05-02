@@ -9,8 +9,10 @@ class Solution:
         if not s:
             return 0
         else:
-            return sum((uppercase.index(letter) + 1) * 26 ** i
-                       for i, letter in enumerate(reversed(s)))
+            return sum(
+                (uppercase.index(letter) + 1) * 26**i
+                for i, letter in enumerate(reversed(s))
+            )
 
 
 class TitleToNumberTest(unittest.TestCase):
@@ -21,9 +23,9 @@ class TitleToNumberTest(unittest.TestCase):
 
     def test_two_letters(self):
         s = Solution()
-        self.assertEquals(s.titleToNumber('AA'), 27)
-        self.assertEquals(s.titleToNumber('AB'), 28)
+        self.assertEquals(s.titleToNumber("AA"), 27)
+        self.assertEquals(s.titleToNumber("AB"), 28)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

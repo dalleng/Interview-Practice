@@ -10,7 +10,7 @@ class Node:
 
 
 class Solution:
-    def levelOrder(self, root: 'Node') -> List[List[int]]:
+    def levelOrder(self, root: "Node") -> List[List[int]]:
         result = []
         frontier = deque([(root, 0)]) if root else deque()
 

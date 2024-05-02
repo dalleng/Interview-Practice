@@ -7,10 +7,10 @@ class ListNode:
         self.next = None
 
     def __str__(self):
-        s = '{}'.format(self.val)
+        s = "{}".format(self.val)
         n = self.next
         while n:
-            s += ' -> {}'.format(n.val)
+            s += " -> {}".format(n.val)
             n = n.next
         return s
 
@@ -61,25 +61,25 @@ class RemoveElementsTest(unittest.TestCase):
     s = Solution()
 
     def test_val_front(self):
-        l1 = buildLinkedList('66234')
-        l2 = buildLinkedList('234')
-        self.assertEquals(self.s.removeElements(l1, '6'), l2)
+        l1 = buildLinkedList("66234")
+        l2 = buildLinkedList("234")
+        self.assertEquals(self.s.removeElements(l1, "6"), l2)
 
     def test_val_middle(self):
-        l1 = buildLinkedList('26634')
-        l2 = buildLinkedList('234')
-        self.assertEquals(self.s.removeElements(l1, '6'), l2)
+        l1 = buildLinkedList("26634")
+        l2 = buildLinkedList("234")
+        self.assertEquals(self.s.removeElements(l1, "6"), l2)
 
     def test_val_end(self):
-        l1 = buildLinkedList('23466')
-        l2 = buildLinkedList('234')
-        self.assertEquals(self.s.removeElements(l1, '6'), l2)
+        l1 = buildLinkedList("23466")
+        l2 = buildLinkedList("234")
+        self.assertEquals(self.s.removeElements(l1, "6"), l2)
 
     def test_only_val(self):
-        l1 = buildLinkedList('66')
-        r = self.s.removeElements(l1, '6')
+        l1 = buildLinkedList("66")
+        r = self.s.removeElements(l1, "6")
         self.assertEquals(r, None)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

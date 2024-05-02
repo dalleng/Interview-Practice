@@ -2,12 +2,21 @@ from typing import List
 
 
 class Solution:
-    def fourSumCountBruteForce(self, nums1: List[int], nums2: List[int], nums3: List[int], nums4: List[int]) -> int:
+    def fourSumCountBruteForce(
+        self, nums1: List[int], nums2: List[int], nums3: List[int], nums4: List[int]
+    ) -> int:
         from itertools import product
 
-        return sum([1 if sum(combination) == 0 else 0 for combination in product(nums1, nums2, nums3, nums4)])
+        return sum(
+            [
+                1 if sum(combination) == 0 else 0
+                for combination in product(nums1, nums2, nums3, nums4)
+            ]
+        )
 
-    def fourSumCount(self, nums1: List[int], nums2: List[int], nums3: List[int], nums4: List[int]) -> int:
+    def fourSumCount(
+        self, nums1: List[int], nums2: List[int], nums3: List[int], nums4: List[int]
+    ) -> int:
         result = 0
         memo = {}
         for num1 in nums1:

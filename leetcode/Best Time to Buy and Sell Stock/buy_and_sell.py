@@ -9,8 +9,7 @@ class Solution:
         max_profit = 0
 
         for i, price in enumerate(prices):
-            profit = max(price - prices[i-1] + mem[i-1]
-                         if i > 0 else 0, 0)
+            profit = max(price - prices[i - 1] + mem[i - 1] if i > 0 else 0, 0)
             mem.append(profit)
 
             if max_profit is None or profit > max_profit:
@@ -35,5 +34,5 @@ class MaxProfitTest(unittest.TestCase):
         self.assertEquals(Solution().maxProfit(l), 0)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -1,7 +1,7 @@
 from typing import List
 
 
-WATER, LAND = ('0', '1')
+WATER, LAND = ("0", "1")
 
 
 class Solution:
@@ -30,13 +30,22 @@ class Solution:
             if j - 1 >= 0 and grid[i][j - 1] == LAND and (i, j - 1) not in seen:
                 frontier.append((i, j - 1))
 
-            if j + 1 < len(grid[0]) and grid[i][j + 1] == LAND and (i, j + 1) not in seen:
+            if (
+                j + 1 < len(grid[0])
+                and grid[i][j + 1] == LAND
+                and (i, j + 1) not in seen
+            ):
                 frontier.append((i, j + 1))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s = Solution()
     assert s.numIslands(["0"]) == 0
     assert s.numIslands(["1"]) == 1
-    grid = [["1", "1", "0", "0", "0"], ["1", "1", "0", "0", "0"], ["0", "0", "1", "0", "0"], ["0", "0", "0", "1", "1"]]
+    grid = [
+        ["1", "1", "0", "0", "0"],
+        ["1", "1", "0", "0", "0"],
+        ["0", "0", "1", "0", "0"],
+        ["0", "0", "0", "1", "1"],
+    ]
     assert s.numIslands(grid) == 3

@@ -5,7 +5,7 @@ class Solution:
         mem = []
         max_sum = None
         for i in range(len(nums)):
-            current_sum = max(0, mem[i-1] if i > 0 else 0) + nums[i]
+            current_sum = max(0, mem[i - 1] if i > 0 else 0) + nums[i]
             if max_sum is None or current_sum > max_sum:
                 max_sum = current_sum
             mem.append(current_sum)

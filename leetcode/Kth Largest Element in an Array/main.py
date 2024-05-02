@@ -32,5 +32,5 @@ class FindKthLargestTest(unittest.TestCase):
         self.assertEquals(self.s.findKthLargest(l, k), 5)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

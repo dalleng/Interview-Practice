@@ -1,5 +1,6 @@
 from collections import Counter
 
+
 def chars_in_a_not_in_b(ctr_a, ctr_b):
     deletions = 0
     for letter, count in ctr_a.items():
@@ -9,8 +10,9 @@ def chars_in_a_not_in_b(ctr_a, ctr_b):
             if diff > 0:
                 deletions += diff
         else:
-                deletions += count
+            deletions += count
     return deletions
+
 
 def number_needed(a, b):
     deletions = 0
@@ -19,7 +21,6 @@ def number_needed(a, b):
     deletions += chars_in_a_not_in_b(ctr_a, ctr_b)
     deletions += chars_in_a_not_in_b(ctr_b, ctr_a)
     return deletions
-    
 
 
 """
@@ -27,8 +28,8 @@ a = input().strip()
 b = input().strip()
 
 """
-if __name__ == '__main__':
-    assert(number_needed('abc', 'cde') == 4)
-    assert(number_needed('', '') == 0)
-    assert(number_needed('ab', 'ba') == 0)
-    assert(number_needed('aaaa', 'bbbb') == 8)
+if __name__ == "__main__":
+    assert number_needed("abc", "cde") == 4
+    assert number_needed("", "") == 0
+    assert number_needed("ab", "ba") == 0
+    assert number_needed("aaaa", "bbbb") == 8

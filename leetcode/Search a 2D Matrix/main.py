@@ -44,11 +44,7 @@ class SearchMatrixTest(unittest.TestCase):
         self.assertFalse(s.searchMatrix(m, 3))
 
     def test_example(self):
-        m = [
-            [1,   3,  5,  7],
-            [10, 11, 16, 20],
-            [23, 30, 34, 50]
-        ]
+        m = [[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 50]]
         s = Solution()
         self.assertTrue(s.searchMatrix(m, 3))
 
@@ -63,5 +59,5 @@ class SearchMatrixTest(unittest.TestCase):
         self.assertFalse(s.searchMatrix(m, 9))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

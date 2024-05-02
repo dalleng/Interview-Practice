@@ -1,5 +1,6 @@
 from collections import OrderedDict
 
+
 class Solution:
     def firstUniqChar(self, s: str) -> int:
         counter = OrderedDict()
@@ -16,7 +17,7 @@ class Solution:
         return -1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     solution = Solution()
     assert solution.firstUniqChar("leetcode") == 0
     assert solution.firstUniqChar("loveleetcode") == 2

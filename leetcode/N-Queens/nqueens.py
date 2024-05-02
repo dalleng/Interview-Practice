@@ -4,19 +4,20 @@ from collections import Counter
 
 class Solution:
     def check_position(self, board, row, col):
-        if Counter(board[row])['Q'] > 1:
+        if Counter(board[row])["Q"] > 1:
             return False
 
         cols = [r[col] for r in board]
 
-        if Counter(cols)['Q'] > 1:
+        if Counter(cols)["Q"] > 1:
             return False
 
         diagonal_elements = Counter(board[row][col])
         diagonal_elements.update(
-            board[r][c] for r, c in self.iter_diagonals(len(board), row, col))
+            board[r][c] for r, c in self.iter_diagonals(len(board), row, col)
+        )
 
-        if diagonal_elements['Q'] > 1:
+        if diagonal_elements["Q"] > 1:
             return False
 
         return True
@@ -37,13 +38,13 @@ class Solution:
     # @param {integer} n
     # @return {string[][]}
     def solveNQueens(self, n):
-        board = ['.' * n for _ in range(n)]
+        board = ["." * n for _ in range(n)]
         domains = [range(n) for _ in range(n)]
         solutions = []
 
         def solve(col, domains):
             for row in domains[col]:
-                board[row] = board[row][:col] + 'Q' + board[row][col+1:]
+                board[row] = board[row][:col] + "Q" + board[row][col + 1 :]
 
                 if self.check_position(board, row, col):
                     if col == n - 1:
@@ -52,7 +53,7 @@ class Solution:
                         filtered = self.filter_domains(domains, row, col)
                         solve(col + 1, filtered)
 
-                board[row] = board[row][:col] + '.' + board[row][col+1:]
+                board[row] = board[row][:col] + "." + board[row][col + 1 :]
 
         solve(0, domains)
         return solutions
@@ -60,21 +61,13 @@ class Solution:
 
 class NQueensTest(unittest.TestCase):
     """
-        Ran 3 tests in 1.305s
+    Ran 3 tests in 1.305s
     """
+
     def test_4_queens(self):
         s = Solution()
         solutions = s.solveNQueens(4)
-        expected = [
-            [".Q..",
-             "...Q",
-             "Q...",
-             "..Q."],
-            ["..Q.",
-             "Q...",
-             "...Q",
-             ".Q.."]
-        ]
+        expected = [[".Q..", "...Q", "Q...", "..Q."], ["..Q.", "Q...", "...Q", ".Q.."]]
         self.assertEquals(set(map(str, solutions)), set(map(str, expected)))
 
     def test_8_queens(self):
@@ -102,5 +95,6 @@ class NQueensTest(unittest.TestCase):
         solutions = s.solveNQueens(12)
         self.assertEquals(len(solutions), 14200)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

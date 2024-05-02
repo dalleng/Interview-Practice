@@ -7,7 +7,7 @@ class Node:
 
 
 class Solution:
-    def treeToDoublyList(self, root: 'Node') -> 'Node':
+    def treeToDoublyList(self, root: "Node") -> "Node":
         self.head = root
         self.traverse(root)
 

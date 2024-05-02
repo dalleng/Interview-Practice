@@ -10,8 +10,8 @@ class Solution:
         max_prod = nums[0]
         for n in nums[1:]:
             tmp = current_max
-            current_max = max(n, n*current_max, n*current_min)
-            current_min = min(n, n*tmp, n*current_min)
+            current_max = max(n, n * current_max, n * current_min)
+            current_min = min(n, n * tmp, n * current_min)
             max_prod = max(max_prod, current_max)
         return max_prod
 
@@ -33,5 +33,5 @@ class MaxProductTest(unittest.TestCase):
         self.assertEquals(Solution().maxProduct([-1, -2, -3]), 6)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -51,7 +51,9 @@ from random import randint
 
 
 # this problem can be turned into a version of 4sum
-def getNumberOfOptionsBF(priceOfJeans, priceOfShoes, priceOfSkirts, priceOfTops, dollars):
+def getNumberOfOptionsBF(
+    priceOfJeans, priceOfShoes, priceOfSkirts, priceOfTops, dollars
+):
     priceOfJeans.sort()
     priceOfShoes.sort()
     priceOfSkirts.sort()
@@ -162,22 +164,23 @@ class GetNumberOfOptionsTest(unittest.TestCase):
 
     def test_generate_cases(self):
         import time
+
         N_TESTS = 10
         for i in range(N_TESTS):
             list_of_prices = self.generate_list_of_prices()
-            print('-' * 80)
-            print(f'Test Case: {i}')
+            print("-" * 80)
+            print(f"Test Case: {i}")
             dollars = randint(1, 1_000_000_000)
             start = time.time()
             brute_force_solution = getNumberOfOptionsBF(*list_of_prices, dollars)
-            print('brute_force_solution took {}', time.time() - start)
-            print('brute_force_solution', brute_force_solution)
+            print("brute_force_solution took {}", time.time() - start)
+            print("brute_force_solution", brute_force_solution)
             start = time.time()
             non_bf_solution = getNumberOfOptions(*list_of_prices, dollars)
-            print('non_bf_solution', non_bf_solution)
-            print('non_bf_solution took {}', time.time() - start)
+            print("non_bf_solution", non_bf_solution)
+            print("non_bf_solution took {}", time.time() - start)
             self.assertEqual(brute_force_solution, non_bf_solution)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

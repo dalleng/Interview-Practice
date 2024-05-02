@@ -4,18 +4,17 @@ import unittest
 
 
 def make_change(coins, n):
-    memo = [0 for i in range(n+1)]
+    memo = [0 for i in range(n + 1)]
     memo[0] = 1
 
     for i, coin in enumerate(coins):
         for j in range(coin, len(memo)):
-            memo[j] += memo[j-coin]
+            memo[j] += memo[j - coin]
 
     return memo[n]
 
 
 class MakeChangeTest(unittest.TestCase):
-
     def test_sample1(self):
         self.assertEqual(make_change([1, 2, 3], 4), 4)
 
@@ -29,5 +28,5 @@ class MakeChangeTest(unittest.TestCase):
         self.assertEqual(make_change([8, 5], 11), 0)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

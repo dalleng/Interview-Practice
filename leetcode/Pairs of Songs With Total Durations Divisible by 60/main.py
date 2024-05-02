@@ -62,7 +62,11 @@ class Solution:
                     memo[t] * memo[target] since it'd give 9 which isn't the right amount of pairs.
                     The formula n * (n-1) / 2 gives the numbers of non-repeating pairs.
                     """
-                    solutions += memo[t] * (memo[t] - 1) // 2 if target == t else memo[t] * memo[target]
+                    solutions += (
+                        memo[t] * (memo[t] - 1) // 2
+                        if target == t
+                        else memo[t] * memo[target]
+                    )
 
             """
             Avoids duplicate counts. If we have considered the case 30 + 150, there's no need to

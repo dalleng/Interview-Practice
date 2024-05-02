@@ -1,10 +1,11 @@
 import unittest
-'''
+
+"""
 Problem 4.2
 -------------------------------------------------------
 Given a directed graph, design an algorithm to find out
 whether there is a route be- tween two nodes.
-'''
+"""
 
 
 def are_connected(graph, node1, node2):
@@ -34,7 +35,7 @@ def depth_first_traversal(graph, start):
 
 class AreConnectedTest(unittest.TestCase):
     def test_empty_graph(self):
-        self.assertFalse(are_connected({}, 'foo', 'bar'))
+        self.assertFalse(are_connected({}, "foo", "bar"))
 
     def test_non_existent_node(self):
         g = {1: [2]}
@@ -65,27 +66,23 @@ class AreConnectedTest(unittest.TestCase):
           / \ /\
           d  e  f
         """
-        g = {
-            'a': ['b', 'c'],
-            'b': ['d', 'e'],
-            'c': ['e', 'f']
-        }
+        g = {"a": ["b", "c"], "b": ["d", "e"], "c": ["e", "f"]}
 
         # The root has routes to all other nodes
-        self.assertTrue(are_connected(g, 'a', 'b'))
-        self.assertTrue(are_connected(g, 'a', 'c'))
-        self.assertTrue(are_connected(g, 'a', 'd'))
-        self.assertTrue(are_connected(g, 'a', 'e'))
-        self.assertTrue(are_connected(g, 'a', 'f'))
+        self.assertTrue(are_connected(g, "a", "b"))
+        self.assertTrue(are_connected(g, "a", "c"))
+        self.assertTrue(are_connected(g, "a", "d"))
+        self.assertTrue(are_connected(g, "a", "e"))
+        self.assertTrue(are_connected(g, "a", "f"))
 
         # Leaves have no routes to other nodes
-        self.assertFalse(are_connected(g, 'd', 'b'))
-        self.assertFalse(are_connected(g, 'd', 'e'))
-        self.assertFalse(are_connected(g, 'd', 'f'))
-        self.assertFalse(are_connected(g, 'd', 'c'))
-        self.assertFalse(are_connected(g, 'd', 'a'))
+        self.assertFalse(are_connected(g, "d", "b"))
+        self.assertFalse(are_connected(g, "d", "e"))
+        self.assertFalse(are_connected(g, "d", "f"))
+        self.assertFalse(are_connected(g, "d", "c"))
+        self.assertFalse(are_connected(g, "d", "a"))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(AreConnectedTest)
     unittest.TextTestRunner(verbosity=2).run(suite)

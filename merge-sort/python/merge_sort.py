@@ -58,5 +58,6 @@ class MergeSortTest(unittest.TestCase):
         n = 100
         [randint(1, 100) for _ in range(n)]
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

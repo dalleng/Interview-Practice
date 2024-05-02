@@ -13,7 +13,7 @@ class Interval:
 
 
 class Solution:
-    def employeeFreeTime(self, schedule: '[[Interval]]') -> '[Interval]':
+    def employeeFreeTime(self, schedule: "[[Interval]]") -> "[Interval]":
         sorted_schedule = []
         for intervals in schedule:
             for interval in intervals:
@@ -39,7 +39,7 @@ class Solution:
         for i in range(len(merged_schedule) - 1):
             current = merged_schedule[i]
             after = merged_schedule[i + 1]
-            print(f'current: {current} after: {after}')
+            print(f"current: {current} after: {after}")
             free_time.append(Interval(current[1], after[0]))
 
         return free_time
@@ -47,7 +47,11 @@ class Solution:
 
 class SolutionTestCase(unittest.TestCase):
     def test_example(self):
-        schedule = [[Interval(*[1, 2]), Interval(*[5, 6])], [Interval(*[1, 3])], [Interval(*[4, 10])]]
+        schedule = [
+            [Interval(*[1, 2]), Interval(*[5, 6])],
+            [Interval(*[1, 3])],
+            [Interval(*[4, 10])],
+        ]
         result = Solution().employeeFreeTime(schedule)
         self.assertEqual(result[0].as_tuple, (3, 4))
 
@@ -61,5 +65,5 @@ class SolutionTestCase(unittest.TestCase):
         self.assertEqual([r.as_tuple for r in result], [(5, 6), (7, 9)])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

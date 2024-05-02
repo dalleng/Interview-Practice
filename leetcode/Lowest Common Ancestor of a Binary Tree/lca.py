@@ -25,7 +25,7 @@ class Solution(object):
                     continue
 
     def dfs(self, root, goal):
-        print('root:{} goal:{}'.format(root.val, goal.val))
+        print("root:{} goal:{}".format(root.val, goal.val))
         frontier = [[root, False, False]]
         while frontier:
             node, seen_l, seen_r = frontier[-1]

@@ -18,7 +18,9 @@ class Solution:
                 continue
 
             seen.add((current_x, current_y))
-            print(f'steps: {steps} d: {d} current_x: {current_x} current_y: {current_y}')
+            print(
+                f"steps: {steps} d: {d} current_x: {current_x} current_y: {current_y}"
+            )
 
             if (current_x, current_y) == (x, y):
                 return steps
@@ -50,5 +52,5 @@ class RemoveElementsTest(unittest.TestCase):
         self.assertEqual(self.s.minKnightMoves(5, 5), 4)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

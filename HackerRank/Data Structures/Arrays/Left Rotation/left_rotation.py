@@ -8,7 +8,6 @@ def array_left_rotation(a, n, k):
 
 
 class ArrayLRTest(unittest.TestCase):
-
     def test_sample(self):
         a = list(range(1, 6))
         self.assertEqual(array_left_rotation(a, len(a), 4), [5, 1, 2, 3, 4])
@@ -26,5 +25,5 @@ class ArrayLRTest(unittest.TestCase):
         self.assertEqual(array_left_rotation(a, len(a), 5), a)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

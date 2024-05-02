@@ -6,6 +6,6 @@ class Solution:
         memo = {}
         for i, n in enumerate(nums):
             if target - n in memo:
-                return [memo[target-n], i]
+                return [memo[target - n], i]
             else:
                 memo[n] = i

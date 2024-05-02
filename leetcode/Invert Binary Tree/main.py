@@ -66,5 +66,5 @@ class InvertTest(unittest.TestCase):
         self.assertEquals(node2.right.val, node2_.right.val)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

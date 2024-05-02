@@ -21,7 +21,7 @@ class Node:
 
 
 def levelOrder(root):
-    result = ''
+    result = ""
     frontier = deque([root])
 
     while frontier:
@@ -50,14 +50,18 @@ class LevelOrderTest(unittest.TestCase):
               4
         """
         tree = Node.build_tree(
-            1, None, Node.build_tree(2, None, Node.build_tree(5, Node.build_tree(3, None, Node(4)), Node(6)))
+            1,
+            None,
+            Node.build_tree(
+                2, None, Node.build_tree(5, Node.build_tree(3, None, Node(4)), Node(6))
+            ),
         )
-        self.assertEqual(levelOrder(tree), '1 2 5 3 6 4')
+        self.assertEqual(levelOrder(tree), "1 2 5 3 6 4")
 
     def test_single_node_tree(self):
         tree = Node(8)
-        self.assertEqual(levelOrder(tree), '8')
+        self.assertEqual(levelOrder(tree), "8")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

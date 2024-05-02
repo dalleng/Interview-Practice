@@ -7,7 +7,9 @@ class TreeNode:
 
 
 class Solution:
-    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+    def lowestCommonAncestor(
+        self, root: "TreeNode", p: "TreeNode", q: "TreeNode"
+    ) -> "TreeNode":
         path_p = []
         path_q = []
         self.dfs(root, p, path_p)

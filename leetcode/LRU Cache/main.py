@@ -19,7 +19,7 @@ class LRUCache:
         else:
             if self.current_capacity == self.max_capacity:
                 self.cache.popitem(last=False)
-            self.current_capacity = min(self.current_capacity+1, self.max_capacity)
+            self.current_capacity = min(self.current_capacity + 1, self.max_capacity)
             self.cache[key] = value
 
 

@@ -10,7 +10,7 @@ class Solution:
         """
         q = []
         for x, y in points:
-            heapq.heappush(q, (math.sqrt(x**2+y**2), x, y))
+            heapq.heappush(q, (math.sqrt(x**2 + y**2), x, y))
         closest = [[x, y] for _, x, y in heapq.nsmallest(k, q)]
         return closest
 
@@ -22,9 +22,9 @@ class Solution:
 
         for x, y in points:
             if len(q) < k:
-                heapq.heappush(q, (-math.sqrt(x**2+y**2), x, y))
+                heapq.heappush(q, (-math.sqrt(x**2 + y**2), x, y))
             else:
-                distance = math.sqrt(x**2+y**2)
+                distance = math.sqrt(x**2 + y**2)
                 max_min_distance, _, _ = q[0]
                 if -max_min_distance > distance:
                     heapq.heappushpop(q, (-distance, x, y))
